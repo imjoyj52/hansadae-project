@@ -69,7 +69,7 @@ function Main() {
             />
           </motion.div>
           <p className="text-lg text-gray-600 max-w-md mx-auto">
-            웹디자인 포트폴리오
+            웹 포트폴리오에 오신 것을 환영합니다.
           </p>
         </motion.header>
 

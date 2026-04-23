@@ -222,6 +222,7 @@ Pages (페이지)
 | docs/style_guide.md | 디자인 시스템, 컬러, 타이포그래피 |
 | docs/plan.md | 기획 문서, 사이트맵, 요구사항 |
 | docs/page_guide.md | 페이지 수정 방법 안내 |
+| docs/deploy_guide.md | 배포 방법 및 GitHub 연동 안내 |
 | src/components/common/guide.md | 공통 컴포넌트 사용법 |
 
 **변경 이력 기록 형식**:
