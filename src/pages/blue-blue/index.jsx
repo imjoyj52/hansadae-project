@@ -39,25 +39,23 @@ SF가 진보하는 기술 속에서 변화하고 발전하는 모습을 예견�
       },
     ],
   },
-  purchase: {
-    title: '책 구매하러 가기',
-    content: `
-      이미지를 클릭하면 교보문고에서 구매할 수 있습니다.
-    `,
-    image: '/img/blue-blue/book.jpg',
-    link: 'https://product.kyobobook.co.kr/detail/S000001935255',
-  },
+}
+
+// 퀵메뉴 (플로팅 구매 버튼) 설정
+const quickMenu = {
+  image: '/img/blue-blue/book.jpg',
+  link: 'https://product.kyobobook.co.kr/detail/S000001935255',
+  text: '구매하기',
 }
 // =============================================
 
 const tabs = [
   { id: 'summary', label: '책 소개' },
   { id: 'review', label: '책을 읽은 후' },
-  { id: 'purchase', label: '책 구매하러 가기' },
 ]
 
 function BlueBlue() {
-  const [activeTab, setActiveTab] = useTabWithHash('summary', ['summary', 'review', 'purchase'])
+  const [activeTab, setActiveTab] = useTabWithHash('summary', ['summary', 'review'])
 
   return (
     <motion.div
@@ -133,7 +131,9 @@ function BlueBlue() {
 
       {/* 탭 컨텐츠 영역 */}
       <div className="px-6 py-12 md:py-16">
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-5xl mx-auto flex gap-6 items-start">
+          {/* 메인 컨텐츠 */}
+          <div className="flex-1 max-w-3xl">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeTab}
@@ -176,47 +176,60 @@ function BlueBlue() {
                 </div>
               )}
 
-              {/* 이미지 + 링크가 있는 경우 클릭 가능한 이미지 */}
-              {tabContents[activeTab].image && tabContents[activeTab].link && (
-                <a
-                  href={tabContents[activeTab].link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block mt-6 group"
-                >
-                  <img
-                    src={tabContents[activeTab].image}
-                    alt={tabContents[activeTab].title}
-                    className="w-full max-w-sm mx-auto rounded-lg shadow-lg transition-transform duration-300 group-hover:scale-105 group-hover:shadow-xl"
-                  />
-                  <p className="text-center text-sm text-gray-500 mt-3 group-hover:text-primary transition-colors">
-                  </p>
-                </a>
-              )}
-
-              {/* 이미지만 있는 경우 */}
-              {tabContents[activeTab].image && !tabContents[activeTab].link && (
-                <img
-                  src={tabContents[activeTab].image}
-                  alt={tabContents[activeTab].title}
-                  className="w-full max-w-sm mx-auto rounded-lg shadow-lg mt-6"
-                />
-              )}
-
-              {/* 링크만 있는 경우 버튼 표시 */}
-              {tabContents[activeTab].link && !tabContents[activeTab].image && (
-                <a
-                  href={tabContents[activeTab].link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block mt-6 px-6 py-3 bg-primary text-white font-bold rounded-lg hover:bg-primary-dark transition-colors shadow-pink"
-                >
-                </a>
-              )}
             </motion.div>
           </AnimatePresence>
+          </div>
+
+          {/* 퀵메뉴 (구매하기) - 컨텐츠 옆에 sticky */}
+          <div className="hidden md:block self-start sticky top-24">
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+            >
+            <a
+              href={quickMenu.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex flex-col items-center bg-white rounded-xl shadow-lg p-3 border border-gray-200 hover:shadow-xl transition-shadow"
+            >
+              <img
+                src={quickMenu.image}
+                alt={quickMenu.text}
+                className="w-20 rounded-lg shadow-md transition-transform duration-300 group-hover:scale-105"
+              />
+              <span className="mt-2 text-sm font-bold text-gray-700 group-hover:text-primary transition-colors">
+                {quickMenu.text}
+              </span>
+            </a>
+            </motion.div>
+          </div>
         </div>
       </div>
+
+      {/* 모바일용 플로팅 퀵메뉴 */}
+      <a
+        href={quickMenu.link}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="md:hidden fixed bottom-6 right-6 z-50 group"
+      >
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.3, delay: 0.5 }}
+          className="flex flex-col items-center bg-white rounded-xl shadow-xl p-2 border border-gray-200"
+        >
+          <img
+            src={quickMenu.image}
+            alt={quickMenu.text}
+            className="w-14 rounded-lg shadow-md"
+          />
+          <span className="mt-1 text-xs font-bold text-gray-700">
+            {quickMenu.text}
+          </span>
+        </motion.div>
+      </a>
     </motion.div>
   )
 }
