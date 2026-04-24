@@ -6,7 +6,7 @@ import Navigation from '../../components/common/Navigation'
 // =============================================
 const pageConfig = {
   title: '마루',
-  subtitle: '페이지 설명을 입력하세요',
+  subtitle: '준비중입니다.',
   // 히어로 배경 이미지 (선택사항)
   // heroImage: '/img/maru_hero.png',
 }
@@ -16,7 +16,7 @@ const content = {
   sections: [
     {
       title: '섹션 제목',
-      content: '여기에 내용을 입력하세요.',
+      content: '준비중입니다.',
     },
   ],
 }
