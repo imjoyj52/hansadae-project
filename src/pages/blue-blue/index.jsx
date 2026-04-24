@@ -1,7 +1,6 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import Navigation from '../../components/common/Navigation'
+import useTabWithHash from '../../hooks/useTabWithHash'
 
 // =============================================
 // 컨텐츠 데이터 - 이 부분을 직접 수정하세요!
@@ -58,7 +57,7 @@ const tabs = [
 ]
 
 function BlueBlue() {
-  const [activeTab, setActiveTab] = useState('summary')
+  const [activeTab, setActiveTab] = useTabWithHash('summary', ['summary', 'review', 'purchase'])
 
   return (
     <motion.div
