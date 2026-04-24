@@ -191,7 +191,6 @@ function BlueBlue() {
                     className="w-full max-w-sm mx-auto rounded-lg shadow-lg transition-transform duration-300 group-hover:scale-105 group-hover:shadow-xl"
                   />
                   <p className="text-center text-sm text-gray-500 mt-3 group-hover:text-primary transition-colors">
-                    클릭하여 구매하기
                   </p>
                 </a>
               )}
