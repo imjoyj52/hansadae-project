@@ -213,7 +213,6 @@ function BlueBlue() {
                   rel="noopener noreferrer"
                   className="inline-block mt-6 px-6 py-3 bg-primary text-white font-bold rounded-lg hover:bg-primary-dark transition-colors shadow-pink"
                 >
-                  구매하러 가기
                 </a>
               )}
             </motion.div>
