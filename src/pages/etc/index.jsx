@@ -15,8 +15,8 @@ const pageConfig = {
 const content = {
   sections: [
     {
-      title: '섹션 제목',
-      content: '여기에 내용을 입력하세요.',
+      title: '준비중',
+      content: '준비중입니다.',
     },
   ],
 }
