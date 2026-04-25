@@ -10,7 +10,8 @@ import { Link } from 'react-router-dom'
  * @param {'primary' | 'secondary' | 'outline' | 'ghost'} props.variant - 버튼 스타일 (기본: 'primary')
  * @param {'sm' | 'md' | 'lg'} props.size - 버튼 크기 (기본: 'md')
  * @param {boolean} props.disabled - 비활성화 상태
- * @param {string} props.href - 링크 URL (설정 시 Link 컴포넌트로 렌더링)
+ * @param {string} props.href - 내부 링크 URL (설정 시 Link 컴포넌트로 렌더링)
+ * @param {string} props.externalHref - 외부 링크 URL (새 탭에서 열림)
  * @param {string} props.className - 추가 스타일 클래스
  * @param {function} props.onClick - 클릭 핸들러
  */
@@ -20,6 +21,7 @@ function Button({
   size = 'md',
   disabled = false,
   href,
+  externalHref,
   className = '',
   onClick,
   ...props
@@ -74,6 +76,23 @@ function Button({
     whileTap: disabled ? {} : { scale: 0.98 },
   }
 
+  // 외부 링크 (새 탭에서 열림)
+  if (externalHref) {
+    return (
+      <motion.a
+        {...motionProps}
+        href={externalHref}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={combinedClassName}
+        {...props}
+      >
+        {children}
+      </motion.a>
+    )
+  }
+
+  // 내부 링크 (React Router)
   if (href) {
     return (
       <motion.div {...motionProps}>
