@@ -217,7 +217,7 @@ function BlueBlue() {
               <img
                 src={quickMenu.image}
                 alt={quickMenu.text}
-                className="w-20 rounded-lg shadow-md transition-transform duration-300 group-hover:scale-105"
+                className="w-24 rounded-lg shadow-md transition-transform duration-300 group-hover:scale-105"
               />
               <span className="mt-2 text-sm font-bold text-gray-700 group-hover:text-primary transition-colors">
                 {quickMenu.text}
