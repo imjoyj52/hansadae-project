@@ -223,58 +223,84 @@ function Maru() {
 
               {/* 캐러셀이 있는 경우 */}
               {tabContents[activeTab].carousel && (
-                <div className="relative">
-                  {/* 좌우 화살표 버튼 */}
-                  <button
-                    onClick={goToPrev}
-                    className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-white/80 hover:bg-white rounded-full shadow-md flex items-center justify-center text-gray-600 hover:text-primary transition-colors"
-                  >
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                    </svg>
-                  </button>
-                  <button
-                    onClick={goToNext}
-                    className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-white/80 hover:bg-white rounded-full shadow-md flex items-center justify-center text-gray-600 hover:text-primary transition-colors"
-                  >
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </button>
-
+                <div>
                   {/* 캐러셀 컨텐츠 (드래그 가능) */}
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={carouselIndex}
-                      initial={{ opacity: 0, x: 50 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: -50 }}
-                      transition={{ duration: 0.5 }}
-                      drag="x"
-                      dragConstraints={{ left: 0, right: 0 }}
-                      dragElastic={0.2}
-                      onDragEnd={(e, { offset }) => {
-                        if (offset.x > 50) goToPrev()
-                        else if (offset.x < -50) goToNext()
-                      }}
-                      className="bg-gray-50 rounded-xl p-6 mx-12 border border-gray-200 cursor-grab active:cursor-grabbing"
+                  <div className="relative">
+                    {/* 좌우 발바닥 버튼 - 이미지 영역 중간에 배치 */}
+                    <button
+                      onClick={goToPrev}
+                      className="absolute -left-2 top-1/2 -translate-y-1/2 z-10 w-12 h-12 hover:scale-110 transition-transform group"
+                      aria-label="이전"
                     >
-                      <img
-                        src={tabContents[activeTab].carousel[carouselIndex].image}
-                        alt={tabContents[activeTab].carousel[carouselIndex].label}
-                        className="w-full max-w-md mx-auto object-contain rounded-lg shadow-md mb-4 pointer-events-none"
-                      />
-                      <div className="flex justify-center">
-                        <Button
-                          externalHref={tabContents[activeTab].carousel[carouselIndex].link}
-                          variant="primary"
-                          size="md"
-                        >
-                          {tabContents[activeTab].carousel[carouselIndex].label}
-                        </Button>
-                      </div>
-                    </motion.div>
-                  </AnimatePresence>
+                      <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-md -rotate-90">
+                        {/* 메인 패드 */}
+                        <ellipse cx="50" cy="60" rx="28" ry="24" className="fill-amber-200 group-hover:fill-amber-300 transition-colors" />
+                        {/* 발가락들 */}
+                        <ellipse cx="25" cy="30" rx="12" ry="14" className="fill-amber-200 group-hover:fill-amber-300 transition-colors" />
+                        <ellipse cx="50" cy="22" rx="12" ry="14" className="fill-amber-200 group-hover:fill-amber-300 transition-colors" />
+                        <ellipse cx="75" cy="30" rx="12" ry="14" className="fill-amber-200 group-hover:fill-amber-300 transition-colors" />
+                        {/* 패드 디테일 */}
+                        <ellipse cx="50" cy="62" rx="18" ry="14" className="fill-pink-300 group-hover:fill-pink-400 transition-colors" />
+                        <ellipse cx="25" cy="32" rx="7" ry="8" className="fill-pink-300 group-hover:fill-pink-400 transition-colors" />
+                        <ellipse cx="50" cy="24" rx="7" ry="8" className="fill-pink-300 group-hover:fill-pink-400 transition-colors" />
+                        <ellipse cx="75" cy="32" rx="7" ry="8" className="fill-pink-300 group-hover:fill-pink-400 transition-colors" />
+                      </svg>
+                    </button>
+                    <button
+                      onClick={goToNext}
+                      className="absolute -right-2 top-1/2 -translate-y-1/2 z-10 w-12 h-12 hover:scale-110 transition-transform group"
+                      aria-label="다음"
+                    >
+                      <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-md rotate-90">
+                        {/* 메인 패드 */}
+                        <ellipse cx="50" cy="60" rx="28" ry="24" className="fill-amber-200 group-hover:fill-amber-300 transition-colors" />
+                        {/* 발가락들 */}
+                        <ellipse cx="25" cy="30" rx="12" ry="14" className="fill-amber-200 group-hover:fill-amber-300 transition-colors" />
+                        <ellipse cx="50" cy="22" rx="12" ry="14" className="fill-amber-200 group-hover:fill-amber-300 transition-colors" />
+                        <ellipse cx="75" cy="30" rx="12" ry="14" className="fill-amber-200 group-hover:fill-amber-300 transition-colors" />
+                        {/* 패드 디테일 */}
+                        <ellipse cx="50" cy="62" rx="18" ry="14" className="fill-pink-300 group-hover:fill-pink-400 transition-colors" />
+                        <ellipse cx="25" cy="32" rx="7" ry="8" className="fill-pink-300 group-hover:fill-pink-400 transition-colors" />
+                        <ellipse cx="50" cy="24" rx="7" ry="8" className="fill-pink-300 group-hover:fill-pink-400 transition-colors" />
+                        <ellipse cx="75" cy="32" rx="7" ry="8" className="fill-pink-300 group-hover:fill-pink-400 transition-colors" />
+                      </svg>
+                    </button>
+
+                    <AnimatePresence mode="wait">
+                      <motion.div
+                        key={carouselIndex}
+                        initial={{ opacity: 0, x: 50 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: -50 }}
+                        transition={{ duration: 0.5 }}
+                        drag="x"
+                        dragConstraints={{ left: 0, right: 0 }}
+                        dragElastic={0.2}
+                        onDragEnd={(e, { offset }) => {
+                          if (offset.x > 50) goToPrev()
+                          else if (offset.x < -50) goToNext()
+                        }}
+                        className="bg-gray-50 rounded-xl p-6 mx-10 border border-gray-200 cursor-grab active:cursor-grabbing"
+                      >
+                        <div className="h-64 md:h-80 flex items-center justify-center mb-4">
+                          <img
+                            src={tabContents[activeTab].carousel[carouselIndex].image}
+                            alt={tabContents[activeTab].carousel[carouselIndex].label}
+                            className="max-h-full max-w-full object-contain rounded-lg shadow-md pointer-events-none"
+                          />
+                        </div>
+                        <div className="flex justify-center">
+                          <Button
+                            externalHref={tabContents[activeTab].carousel[carouselIndex].link}
+                            variant="primary"
+                            size="md"
+                          >
+                            {tabContents[activeTab].carousel[carouselIndex].label}
+                          </Button>
+                        </div>
+                      </motion.div>
+                    </AnimatePresence>
+                  </div>
 
                   {/* 인디케이터 */}
                   <div className="flex justify-center gap-2 mt-4">
